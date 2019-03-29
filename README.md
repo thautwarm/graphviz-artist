@@ -76,7 +76,7 @@ g.view()
 
 ### Expression Tree
 
-```
+```python
 import graphviz_artist as ga
 import graphviz_artist.attr as attr
 
