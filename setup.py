@@ -6,7 +6,7 @@ with open('README.md', 'r') as readme:
 
 setup(
     name='graphviz-artist',
-    version='0.1',
+    version='0.1.1',
     keywords="", # keywords of your project that separated by comma ","
     description="", # a conceise introduction of your project
     long_description=readme,
@@ -16,7 +16,7 @@ setup(
     url='https://github.com/thautwarm/graphviz-artist',
     author='thautwarm',
     author_email='twshere@outlook.com',
-    packages=find_packages(),
+    packages=['graphviz_artist'],
     entry_points={"console_scripts": []},
     # above option specifies commands to be installed,
     # e.g: entry_points={"console_scripts": ["yapypy=yapypy.cmd.compiler"]}
