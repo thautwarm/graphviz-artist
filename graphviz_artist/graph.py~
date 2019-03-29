@@ -1,0 +1,8 @@
+from graphviz import Digraph as _Digraph , Graph as _Graph, Dot as _Dot
+
+class Graph:
+    def __init__(self, g=None, directed=True):
+        self.g = g or (_Digraph if directed else _Graph)()
+
+     
+        
