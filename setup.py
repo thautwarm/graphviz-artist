@@ -10,9 +10,7 @@ setup(
     keywords="graphviz, graph-drawing, dsl", # keywords of your project that separated by comma ","
     description="A chance to focus on graph drawing itself, forget APIs and other stuffs.", # a conceise introduction of your project
     long_description=readme,
-    long_description_content_type="text/markdown",
     license='mit',
-    python_requires='>=3.6.0',
     url='https://github.com/thautwarm/graphviz-artist',
     author='thautwarm',
     author_email='twshere@outlook.com',
