@@ -1,27 +1,53 @@
-from graphviz import Digraph as _Digraph, Graph as _Graph
+from graphviz import Digraph as _Digraph
 from graphviz.dot import Dot as _Dot
 from .attr import *
 from typing import *
-import operator
+
+__all__ = ['Graph', 'By', 'Node']
 
 
 class Graph(object):
-    def __init__(self, g=None, directed=True):  # type: (_Dot, bool) -> None
+    def __init__(self, *attrs, **kwargs):  # type: (*Attr, **object) -> None
         """
-        g: can be `graphviz.Digraph` or `graphviz.Graph`.
-        directed: denote if this graph is directed.
+        e.g.:
+            # all edges are default to be directed
+            >> g = Graph(directed=True)
+
+            # set custom dot graph, should be typed `graphviz.Digraph`
+            >> g = Graph(dot=graphviz.Digraph(...)
         """
-        g = g or (_Digraph if directed else _Graph)()  # type: _Dot
+        directed = kwargs.get('directed', False)
+        g = kwargs.get('dot')
+
+        g = g or _Digraph()  # type: _Dot
         self.g = g  # type: _Dot
 
-    def new(self, *attrs):  # type: (*Attr) -> Node
+        self.count = {}
+        self.attrs = attrs
+
+        self.default_directed = Directed(directed)  # type: Attr
+
+    def update(self, attrs=()):  # type: (*Attr) -> Graph
+        if attrs:
+            self.attrs = _merge_attr(self.attrs, attrs)
+        config = {}
+        for each in self.attrs:
+            each.dump_(config)
+        self.g.graph_attr.update(config)
+        return self
+
+    def new(self, *attrs, **kwds):  # type: (*Attr, **Attr) -> Node
+        attrs = attrs + tuple(kwds.values())
         node = Node(self, attrs)
-        node.name = str(id(node))
+        count = self.count[node] = len(self.count)
+        node.name = str(count)
         node.update()
         return node
 
     def view(self, *args, **kwargs):
+        self.update()
         return self.g.view(*args, **kwargs)
+
 
 class By:
     def __init__(self, node, attrs):  # type: (Node, Tuple[Attr, ...]) -> None
@@ -29,32 +55,32 @@ class By:
         self.attrs = attrs
 
     def _op(self, op, other):
-        return op(self.node, other, *self.attrs)
+        if isinstance(other, By):
+            other = other.node
+        return op(self.node, other, self.attrs)
 
-    def __eq__(self, other):  # type: (Node) -> bool
-        return self._op(operator.eq, other)
+    def __eq__(self, other):  # type: (Union[Node, By]) -> bool
 
-    def __gt__(self, other):  # type: (Node) -> bool
-        return self._op(operator.gt, other)
+        return self._op(lambda a, b, attrs: a.__eq__(b, attrs), other)
 
-    def __lt__(self, other):  # type: (Node) -> bool
-        return self._op(operator.lt, other)
+    def __gt__(self, other):  # type: (Union[Node, By]) -> bool
+        return self._op(lambda a, b, attrs: a.__gt__(b, attrs), other)
+
+    def __lt__(self, other):  # type: (Union[Node, By]) -> bool
+        return self._op(lambda a, b, attrs: a.__lt__(b, attrs), other)
 
 
 class Node(object):
     def __init__(self, g, attrs):
         # type: (Graph, Tuple[Attr, ...]) -> None
-        self.attrs = set(attrs)
+        self.attrs = attrs
         self.name = None
         self.g = g
 
     def update(self, *attrs):  # type: (*Attr) -> Node
+
         if attrs:
-            t = type
-            new_attrs = {t(attr): attr for attr in self.attrs}
-            for new_attr in attrs:
-                new_attrs[t(new_attr)] = new_attr
-            self.attrs = set(new_attrs.values())
+            self.attrs = _merge_attr(self.attrs, attrs)
 
         config = {}
         for each in self.attrs:
@@ -62,22 +88,58 @@ class Node(object):
         self.g.g.node(self.name, **config)
         return self
 
-    def __getitem__(self, attrs):  # type: (Union[Attr, Tuple[Attr]]) -> By
+    def __getitem__(self,
+                    attrs):  # type: (Union[Attr, Tuple[Attr, ...]]) -> By
         if not isinstance(attrs, tuple):
             attrs = (attrs, )
 
         return By(self, attrs)
 
+    def __eq__(
+            self, other,
+            attrs=()):  # type: (Union['Node', By], Tuple[Attr, ...]) -> bool
+        if isinstance(other, By):
+            return By(self, _merge_attr(other.attrs, attrs)) == self
+
+        self.__gt__(other, attrs)
+        other.__gt__(self, attrs)
+        return True
+
     def __gt__(self, other,
-               attrs=()):  # type: (Node, Tuple[Attr, ...]) ->  bool
+               attrs=()):  # type: (Union[Node, By], Tuple[Attr, ...]) ->  bool
+        if isinstance(other, By):
+            return By(self, tuple(_merge_attr(other.attrs, attrs))) < self
+
         left = self.name
         right = other.name
+
         config = {}
+        self.g.default_directed.dump_(config)
+
         for each in attrs:
             each.dump_(config)
         self.g.g.edge(left, right, **config)
         return True
 
-    def __lt__(self, other,
-               attrs=()):  # type: ('Node', Tuple[Attr, ...]) ->  bool
-        return other.__gt__(self, ())
+    def __lt__(
+            self, other,
+            attrs=()):  # type: (Union['Node', By], Tuple[Attr, ...]) ->  bool
+
+        if isinstance(other, By):
+            return By(self, tuple(_merge_attr(other.attrs, attrs))) > self
+
+        return other.__gt__(self, attrs)
+
+
+def _merge_attr(
+        attrs1, attrs2
+):  # type: (Tuple[Attr, ...], Tuple[Attr, ...]) -> Tuple[Attr, ...]
+    if not attrs2:
+        return attrs1
+    if not attrs1:
+        return attrs2
+    t = type
+    new_attrs = {t(attr): attr for attr in attrs1}
+    for new_attr in attrs2:
+        new_attrs[t(new_attr)] = new_attr
+    return tuple(new_attrs)

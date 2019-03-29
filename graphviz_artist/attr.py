@@ -1,7 +1,7 @@
 import numbers
 
 
-class _ClassProperty:
+class _ClassProperty(object):
     def __init__(self, method):
         self.method = method
 
@@ -9,10 +9,14 @@ class _ClassProperty:
         return self.method(instance_cls)
 
 
+def thunk_class_property(f):
+    return _ClassProperty(lambda cls: f())
+
+
 class Attr(object):
     __slots__ = ('value', )
 
-    def __init__(self, value):
+    def __init__(self, value):  # type: (str) -> None
         self.value = value
 
     def dump_(self, config):
@@ -22,11 +26,13 @@ class Attr(object):
         config[self.__class__.__name__.lower()] = self.value
         return config
 
+    def __repr__(self):
+        return "<%s %s>" % (self.__class__.__name__, str(self.value))
+
 
 class Label(Attr):
     """
-    check https://www.graphviz.org/doc/info/attrs.html#k:dirType
-    to get more info.
+    The text to be put on the surface of a node.
     """
     pass
 
@@ -37,12 +43,12 @@ class Ratio(Attr):
 
 class Width(Attr):
     def __init__(self, num):  # type: (numbers.Number) -> None
-        Attr.__init__(self, num)
+        Attr.__init__(self, str(num))
 
 
 class Height(Attr):
     def __init__(self, num):  # type: (numbers.Number) -> None
-        Attr.__init__(self, num)
+        Attr.__init__(self, str(num))
 
 
 class FixedSize(Attr):
@@ -50,17 +56,33 @@ class FixedSize(Attr):
         Attr.__init__(self, 'true')
 
 
-class Direction(Attr):
+class Penwidth(Attr):
+    def __init__(self, num):  # type: (float) -> None
+        Attr.__init__(self, str(num))
+
+
+class Directed(Attr):
     """
     check https://www.graphviz.org/doc/info/attrs.html#k:dirType
     to see available options
     """
 
-    def __init__(self):
-        Attr.__init__(self, 'forward')
+    def __init__(self, is_directed=True):
+        Attr.__init__(self, 'forward' if is_directed else 'none')
 
     def dump_(self, config):
-        config['dirType'] = self.value
+        config['dir'] = self.value
+        return config
+
+
+class Rankdir(Attr):
+    """
+    Sets direction of graph layout.
+    """
+    LR = thunk_class_property(lambda: Rankdir('LR'))
+
+
+HorizontalGraph = Rankdir.LR
 
 
 class Shape(Attr):
@@ -69,8 +91,85 @@ class Shape(Attr):
     https://www.graphviz.org/doc/info/shapes.html
     """
 
-    @_ClassProperty
-    def f(cls):
-        return 1
+    box = thunk_class_property(lambda: Shape('box'))  # type: Shape
+    polygon = thunk_class_property(lambda: Shape('polygon'))  # type: Shape
+    ellipse = thunk_class_property(lambda: Shape('ellipse'))  # type: Shape
 
-print(Shape.f)
+    oval = thunk_class_property(lambda: Shape("oval"))  # type: Shape
+    circle = thunk_class_property(lambda: Shape("circle"))  # type: Shape
+    point = thunk_class_property(lambda: Shape("point"))  # type: Shape
+    egg = thunk_class_property(lambda: Shape("egg"))  # type: Shape
+    triangle = thunk_class_property(lambda: Shape("triangle"))  # type: Shape
+    diamond = thunk_class_property(lambda: Shape("diamond"))  # type: Shape
+    trapezium = thunk_class_property(lambda: Shape("trapezium"))  # type: Shape
+    parallelogram = thunk_class_property(lambda: Shape("parallelogram")
+                                         )  # type: Shape
+    star = thunk_class_property(lambda: Shape("star"))  # type: Shape
+    pentagon = thunk_class_property(lambda: Shape("pentagon"))  # type: Shape
+    hexagon = thunk_class_property(lambda: Shape("hexagon"))  # type: Shape
+    cds = thunk_class_property(lambda: Shape("cds"))  # type: Shape
+    box3d = thunk_class_property(lambda: Shape("box3d"))  # type: Shape
+
+
+class MinLen(Attr):
+    def __init__(self, num):  # type: (float) -> None
+        Attr.__init__(self, str(num))
+
+
+class ImagePos(Attr):
+    """
+    Check https://www.graphviz.org/doc/info/attrs.html#d:penwidth for options
+    """
+
+    def __init__(self):
+        Attr.__init__(self, 'mc')
+
+    def _vertically(self, v):
+        o = ImagePos.__new__(ImagePos)
+        _, b = self.value
+        o.value = v + b
+        return o
+
+    def _horizontally(self, h):
+        o = ImagePos.__new__(ImagePos)
+        b, _ = self.value
+        o.value = b + h
+        return o
+
+    @property
+    def top(self):
+        return self._vertically('t')
+
+    @property
+    def middle(self):
+        return self._vertically('m')
+
+    @property
+    def bottom(self):
+        return self._vertically('b')
+
+    @property
+    def left(self):
+        return self._horizontally('l')
+
+    @property
+    def right(self):
+        return self._horizontally('r')
+
+    @property
+    def centered(self):
+        return self._horizontally('c')
+
+
+class LabelFloat(Attr):
+    def __init__(self):
+        Attr.__init__(self, 'true')
+
+
+class LabelFontSize(Attr):
+    def __init__(self, num):  # type: (numbers.Number) -> None
+        Attr.__init__(self, str(num))
+
+
+class XLabel(Attr):
+    pass
