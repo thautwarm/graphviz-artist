@@ -56,7 +56,7 @@ Undirected Graph
 
 .. raw:: html
 
-   <div style="text-align:center"><img src="imgs/test_1.png" alt="drawing" width="200"/></div>
+   <div style="text-align:center"><img src="https://github.com/thautwarm/graphviz-artist/blob/master/imgs/test_1.png" alt="drawing" width="200"/></div>
 
 Directed Graph
 ~~~~~~~~~~~~~~
@@ -93,7 +93,7 @@ Directed Graph
 
 .. raw:: html
 
-   <div style="text-align:center"><img src="imgs/test_2.png" alt="drawing" width="500"/></div>
+   <div style="text-align:center"><img src="https://github.com/thautwarm/graphviz-artist/blob/master/imgs/test_2.png" alt="drawing" width="500"/></div>
 
 Expression Tree
 ~~~~~~~~~~~~~~~
@@ -134,4 +134,4 @@ Expression Tree
 
 .. raw:: html
 
-   <div style="text-align:center"><img src="imgs/test_3.png" alt="drawing" width="500"/></div>
+   <div style="text-align:center"><img src="https://github.com/thautwarm/graphviz-artist/blob/master/imgs/test_3.png" alt="drawing" width="500"/></div>
