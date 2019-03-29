@@ -26,4 +26,4 @@ edge_size = attr.Penwidth(2.)
 # in `a < b[b_to_c_attrs...] > c`, the edge `b -> c` will have attribute `b_to_c_attrs`.
 _ = n3[directed, edge_label, edge_size] > n1[directed] == n2 > n3
 
-g.view()
+g.save()

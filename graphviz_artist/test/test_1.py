@@ -13,4 +13,4 @@ n3 = g.new()
 # (==) will be introduced later, as it's only meaningful to directed edges.
 _ = n1 > n2 > n3 > n1
 
-g.view()
+g.g.save()

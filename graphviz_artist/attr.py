@@ -116,51 +116,6 @@ class MinLen(Attr):
         Attr.__init__(self, str(num))
 
 
-class ImagePos(Attr):
-    """
-    Check https://www.graphviz.org/doc/info/attrs.html#d:penwidth for options
-    """
-
-    def __init__(self):
-        Attr.__init__(self, 'mc')
-
-    def _vertically(self, v):
-        o = ImagePos.__new__(ImagePos)
-        _, b = self.value
-        o.value = v + b
-        return o
-
-    def _horizontally(self, h):
-        o = ImagePos.__new__(ImagePos)
-        b, _ = self.value
-        o.value = b + h
-        return o
-
-    @property
-    def top(self):
-        return self._vertically('t')
-
-    @property
-    def middle(self):
-        return self._vertically('m')
-
-    @property
-    def bottom(self):
-        return self._vertically('b')
-
-    @property
-    def left(self):
-        return self._horizontally('l')
-
-    @property
-    def right(self):
-        return self._horizontally('r')
-
-    @property
-    def centered(self):
-        return self._horizontally('c')
-
-
 class LabelFloat(Attr):
     def __init__(self):
         Attr.__init__(self, 'true')

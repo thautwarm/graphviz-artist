@@ -39,7 +39,7 @@ class Graph(object):
     def new(self, *attrs, **kwds):  # type: (*Attr, **Attr) -> Node
         attrs = attrs + tuple(kwds.values())
         node = Node(self, attrs)
-        count = self.count[node] = len(self.count)
+        count = self.count[node.token] = len(self.count)
         node.name = str(count)
         node.update()
         return node
@@ -47,6 +47,10 @@ class Graph(object):
     def view(self, *args, **kwargs):
         self.update()
         return self.g.view(*args, **kwargs)
+
+    def save(self, filename=None, directory=None):
+        self.update()
+        return self.g.save(filename, directory)
 
 
 class By:
@@ -76,6 +80,7 @@ class Node(object):
         self.attrs = attrs
         self.name = None
         self.g = g
+        self.token = object()
 
     def update(self, *attrs):  # type: (*Attr) -> Node
 
