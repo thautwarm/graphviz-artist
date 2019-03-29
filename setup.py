@@ -1,7 +1,6 @@
 from setuptools import setup, find_packages
-from datetime import datetime
 
-with Path('README.md').open() as readme:
+with open('README.md', 'r') as readme:
     readme = readme.read()
 
 
