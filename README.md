@@ -4,12 +4,17 @@ You just become an artist in graph drawing once you start using `Graphviz-Artist
 
 If you don't have the demand of fine-grained controling upon generated graphs, the learning curve of graphviz-artist is actually horizontal.
 
+This package provides a higher-level encapsulation for the python package [`graphviz`](https://github.com/xflr6/graphviz), and you might
+want to have a try at the latter.
+
+
 ## Installation
 
 - Install [Graphviz](https://www.graphviz.org/download/).
 - `pip install graphviz-artist`
 
-## Quick Start
+
+## Quickstart
 
 ### Undirected Graph
 
