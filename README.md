@@ -3,6 +3,8 @@
 [![codecov](https://codecov.io/gh/thautwarm/graphviz-artist/branch/master/graph/badge.svg)](https://codecov.io/gh/thautwarm/graphviz-artist)
 [![PyPI version](https://img.shields.io/pypi/v/graphviz-artist.svg)](https://pypi.python.org/pypi/graphviz-artist)
 [![Build Status](https://travis-ci.org/thautwarm/graphviz-artist.svg?branch=master)](https://travis-ci.org/thautwarm/graphviz-artist)
+[![Supported Python Version](https://img.shields.io/pypi/pyversions/graphviz-artist.svg)](https://pypi.org/project/graphviz-artist/)
+[![License](https://img.shields.io/badge/license-mit-teal.svg)](https://github.com/thautwarm/graphviz-artist/blob/master/LICENSE)
 
 You just become an artist in graph drawing once you start using `Graphviz-Artist`.
 

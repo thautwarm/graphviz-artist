@@ -8,6 +8,12 @@
 .. image:: https://codecov.io/gh/thautwarm/graphviz-artist/branch/master/graph/badge.svg
   :target: https://codecov.io/gh/thautwarm/graphviz-artist
 
+.. image:: https://img.shields.io/pypi/pyversions/graphviz-artist.svg
+    :target: https://pypi.org/project/graphviz-artist/
+
+.. image:: https://img.shields.io/badge/license-mit-teal.svg
+    :target: https://pypi.org/project/graphviz-artist/
+
 Graphviz-Artist
 ===============
 
