@@ -6,7 +6,7 @@ with open('README.rst', 'r') as readme:
 
 setup(
     name='graphviz-artist',
-    version='0.1.2beta1',
+    version='0.1.3',
     keywords="graphviz, graph-drawing, dsl", # keywords of your project that separated by comma ","
     description="A chance to focus on graph drawing itself, forget APIs and other stuffs.", # a conceise introduction of your project
     long_description=readme,
