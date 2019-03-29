@@ -1,5 +1,16 @@
+
+.. image:: https://travis-ci.org/thautwarm/graphviz-artist.svg?branch=master
+    :target: https://travis-ci.org/thautwarm/graphviz-artist
+
+.. image:: https://img.shields.io/pypi/v/graphviz-artist.svg
+    :target: https://pypi.python.org/pypi/graphviz-artist
+
+.. image:: https://codecov.io/gh/thautwarm/graphviz-artist/branch/master/graph/badge.svg
+  :target: https://codecov.io/gh/thautwarm/graphviz-artist
+
 Graphviz-Artist
 ===============
+
 
 You just become an artist in graph drawing once you start using
 ``Graphviz-Artist``.
@@ -19,6 +30,7 @@ Installation
 
 Quickstart
 ----------
+
 
 Undirected Graph
 ~~~~~~~~~~~~~~~~

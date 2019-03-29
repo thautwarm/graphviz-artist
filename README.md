@@ -1,5 +1,9 @@
 # Graphviz-Artist
 
+[![codecov](https://codecov.io/gh/thautwarm/graphviz-artist/branch/master/graph/badge.svg)](https://codecov.io/gh/thautwarm/graphviz-artist)
+[![PyPI version](https://img.shields.io/pypi/v/graphviz-artist.svg)](https://pypi.python.org/pypi/graphviz-artist)
+[![Build Status](https://travis-ci.org/thautwarm/graphviz-artist.svg?branch=master)](https://travis-ci.org/thautwarm/graphviz-artist)
+
 You just become an artist in graph drawing once you start using `Graphviz-Artist`.
 
 If you don't have the demand of fine-grained controling upon generated graphs, the learning curve of graphviz-artist is actually horizontal.
