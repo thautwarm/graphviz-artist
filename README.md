@@ -44,7 +44,7 @@ g.view()
 ```
 
 <div style="text-align:center">
-    <img src="imgs/test_1.png" alt="drawing" width="200"/>
+    <img src="https://raw.githubusercontent.com/thautwarm/graphviz-artist/master/imgs/test_1.png" alt="drawing" width="200"/>
 </div>
 
 
@@ -81,7 +81,7 @@ g.view()
 ```
 
 <div style="text-align:center">
-    <img src="imgs/test_2.png" alt="drawing" width="500"/>
+    <img src="https://raw.githubusercontent.com/thautwarm/graphviz-artist/master/imgs/test_2.png" alt="drawing" width="500"/>
 </div>
 
 
@@ -121,5 +121,5 @@ _ = binary > expr
 g.view()
 ```
 <div style="text-align:center">
-    <img src="imgs/test_3.png" alt="drawing" width="500"/>
+    <img src="https://raw.githubusercontent.com/thautwarm/graphviz-artist/master/imgs/test_3.png" alt="drawing" width="500"/>
 </div>

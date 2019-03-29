@@ -60,7 +60,7 @@ Undirected Graph
 
     g.view()
 
-.. image:: https://github.com/thautwarm/graphviz-artist/blob/master/imgs/test_1.png
+.. image::  https://raw.githubusercontent.com/thautwarm/graphviz-artist/master/imgs/test_1.png
     :width: 500px
     :align: center
 
@@ -97,7 +97,7 @@ Directed Graph
 
     g.view()
 
-.. image:: https://github.com/thautwarm/graphviz-artist/blob/master/imgs/test_2.png
+.. image::  https://raw.githubusercontent.com/thautwarm/graphviz-artist/master/imgs/test_2.png
     :width: 500px
     :align: center
 
@@ -141,6 +141,6 @@ Expression Tree
     g.view()
 
 
-.. image:: https://github.com/thautwarm/graphviz-artist/blob/master/imgs/test_3.png
+.. image::  https://raw.githubusercontent.com/thautwarm/graphviz-artist/master/imgs/test_3.png
     :width: 500px
     :align: center
