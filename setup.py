@@ -1,14 +1,14 @@
 from setuptools import setup, find_packages
 
-with open('README.md', 'r') as readme:
+with open('README.rst', 'r') as readme:
     readme = readme.read()
 
 
 setup(
     name='graphviz-artist',
     version='0.1.1',
-    keywords="", # keywords of your project that separated by comma ","
-    description="", # a conceise introduction of your project
+    keywords="graphviz, graph-drawing, dsl", # keywords of your project that separated by comma ","
+    description="A chance to focus on graph drawing itself, forget APIs and other stuffs.", # a conceise introduction of your project
     long_description=readme,
     long_description_content_type="text/markdown",
     license='mit',
