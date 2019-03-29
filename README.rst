@@ -60,9 +60,9 @@ Undirected Graph
 
     g.view()
 
-.. raw:: html
-
-   <div style="text-align:center"><img src="https://github.com/thautwarm/graphviz-artist/blob/master/imgs/test_1.png" alt="drawing" width="200"/></div>
+.. image:: https://github.com/thautwarm/graphviz-artist/blob/master/imgs/test_1.png
+    :width: 500px
+    :align: center
 
 Directed Graph
 ~~~~~~~~~~~~~~
@@ -97,9 +97,11 @@ Directed Graph
 
     g.view()
 
-.. raw:: html
+.. image:: https://github.com/thautwarm/graphviz-artist/blob/master/imgs/test_2.png
+    :width: 500px
+    :align: center
 
-   <div style="text-align:center"><img src="https://github.com/thautwarm/graphviz-artist/blob/master/imgs/test_2.png" alt="drawing" width="500"/></div>
+
 
 Expression Tree
 ~~~~~~~~~~~~~~~
@@ -138,6 +140,7 @@ Expression Tree
 
     g.view()
 
-.. raw:: html
 
-   <div style="text-align:center"><img src="https://github.com/thautwarm/graphviz-artist/blob/master/imgs/test_3.png" alt="drawing" width="500"/></div>
+.. image:: https://github.com/thautwarm/graphviz-artist/blob/master/imgs/test_3.png
+    :width: 500px
+    :align: center
