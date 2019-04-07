@@ -103,8 +103,9 @@ class Node(object):
     def __eq__(
             self, other,
             attrs=()):  # type: (Union['Node', By], Tuple[Attr, ...]) -> bool
+
         if isinstance(other, By):
-            return By(self, _merge_attr(other.attrs, attrs)) == self
+            other = other.node
 
         self.__gt__(other, attrs)
         other.__gt__(self, attrs)
@@ -113,7 +114,7 @@ class Node(object):
     def __gt__(self, other,
                attrs=()):  # type: (Union[Node, By], Tuple[Attr, ...]) ->  bool
         if isinstance(other, By):
-            return By(self, tuple(_merge_attr(other.attrs, attrs))) < self
+            other = other.node
 
         left = self.name
         right = other.name
@@ -129,9 +130,8 @@ class Node(object):
     def __lt__(
             self, other,
             attrs=()):  # type: (Union['Node', By], Tuple[Attr, ...]) ->  bool
-
         if isinstance(other, By):
-            return By(self, tuple(_merge_attr(other.attrs, attrs))) > self
+            other = other.node
 
         return other.__gt__(self, attrs)
 

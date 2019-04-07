@@ -27,3 +27,14 @@ edge_size = attr.Penwidth(2.)
 _ = n3[directed, edge_label, edge_size] > n1[directed] == n2 > n3
 
 g.save()
+
+assert """digraph {
+	graph [rankdir=LR]
+	0 [label=hey shape=diamond]
+	1 [label=hey shape=hexagon]
+	2 [label=you shape=star]
+	2 -> 0 [label=passed_here dir=forward penwidth=2.0]
+	0 -> 1 [dir=forward]
+	1 -> 0 [dir=forward]
+	1 -> 2 [dir=none]
+}""" == str(g.g)

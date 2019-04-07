@@ -14,3 +14,12 @@ n3 = g.new()
 _ = n1 > n2 > n3 > n1
 
 g.g.save()
+
+assert """digraph {
+	0
+	1
+	2
+	0 -> 1 [dir=none]
+	1 -> 2 [dir=none]
+	2 -> 0 [dir=none]
+}""" == str(g.g)
