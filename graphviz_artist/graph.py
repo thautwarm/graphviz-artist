@@ -147,4 +147,4 @@ def _merge_attr(
     new_attrs = {t(attr): attr for attr in attrs1}
     for new_attr in attrs2:
         new_attrs[t(new_attr)] = new_attr
-    return tuple(new_attrs)
+    return tuple(new_attrs.values())
