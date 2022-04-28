@@ -86,7 +86,7 @@ HorizontalGraph = Rankdir.LR
 
 
 class Shape(Attr):
-    """ 
+    """
     check following link to see available shape options.
     https://www.graphviz.org/doc/info/shapes.html
     """
@@ -148,4 +148,3 @@ class Style(Attr):
 class Fillcolor(Attr):
     def __init__(self, fillcolor):  # type: (str) -> None
         Attr.__init__(self, fillcolor)
-        
