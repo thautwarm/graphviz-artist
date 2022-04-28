@@ -128,3 +128,24 @@ class LabelFontSize(Attr):
 
 class XLabel(Attr):
     pass
+
+
+class Nodesep(Attr):
+    def __init__(self, num):  # type: (float) -> None
+        Attr.__init__(self, str(num))
+
+
+class Color(Attr):
+    def __init__(self, color):  # type: (str) -> None
+        Attr.__init__(self, color)
+
+
+class Style(Attr):
+    def __init__(self, style):  # type: (str) -> None
+        Attr.__init__(self, style)
+
+
+class Fillcolor(Attr):
+    def __init__(self, fillcolor):  # type: (str) -> None
+        Attr.__init__(self, fillcolor)
+        
